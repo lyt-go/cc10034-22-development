@@ -1,4 +1,4 @@
-"""__NAME__领域服务：字段、状态和动作来自业务配置，数据处理骨架由基类复用。"""
+"""访问审计领域服务：审计记录本身仍走状态流转，用途复核由独立服务承担。"""
 from __future__ import annotations
 
 from app.services.base import BaseModuleService
@@ -13,3 +13,5 @@ class AccessAuditService(BaseModuleService):
     STATUS_ORDER = ["已记录", "需复核", "已异常"]
     ACTION_RULES = {"标记复核": "需复核", "标记异常": "已异常"}
     NEGATIVE_ACTIONS = []
+    # 用途复核需要把同意登记的数据主体与处理目的对到审计事件上，这两个字段不进入列表列。
+    CONTEXT_FIELDS = ["数据主体", "处理目的"]

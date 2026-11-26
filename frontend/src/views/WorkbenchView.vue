@@ -50,6 +50,14 @@
           <td v-for="column in meta.fields" :key="column">{{ row[column] ?? '—' }}</td>
           <td>{{ row.status }}</td>
           <td class="row-actions">
+            <RouterLink
+              v-if="meta.key === 'access_audit'"
+              class="link"
+              :to="`/access_audit/${row.id}`"
+              :data-testid="`detail-${row.id}`"
+            >
+              用途复核
+            </RouterLink>
             <button
               v-for="action in meta.actions"
               :key="action"

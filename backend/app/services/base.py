@@ -59,6 +59,10 @@ class BaseModuleService:
         rows.append(entry)
         return entry, []
 
+    def create_effects(self, entry: dict[str, Any]) -> dict[str, Any] | None:
+        """登记后的领域副作用；没有跨对象影响的模块返回 None。"""
+        return None
+
     def run_action(self, entry_id: int, action: str) -> tuple[dict[str, Any] | None, str]:
         entry = store.find(self.MODULE, entry_id)
         if entry is None:

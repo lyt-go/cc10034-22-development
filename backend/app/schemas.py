@@ -19,6 +19,7 @@ class ActionResult(BaseModel):
     ok: bool
     message: str
     entry: dict[str, Any] | None = None
+    extra: dict[str, Any] | None = None
 
 
 class EntryPayload(BaseModel):
@@ -29,3 +30,20 @@ class EntryPayload(BaseModel):
 class ActionPayload(BaseModel):
     action: str
     remark: str | None = None
+
+
+class PurposeReviewCreate(BaseModel):
+    operator: str | None = None
+    reason: str | None = None
+
+
+class PurposeReviewSign(BaseModel):
+    signer: str
+    consent_id: int | None = None
+    conclusion: str | None = None
+
+
+class PurposeReviewSupplement(BaseModel):
+    operator: str | None = None
+    reason: str
+    evidence: str | None = None
